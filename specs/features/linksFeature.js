@@ -3,11 +3,13 @@ var expect = chai.expect;
 var mongoose = require("mongoose");
 
 var Link = require("../../models/link");
+var Tag = require("../../models/tag");
 
 
 describe('Links', function() {
 
   Link.collection.drop();
+  Tag.collection.drop();
 
   beforeEach(function(done){
     var newLink = new Link({
@@ -21,6 +23,7 @@ describe('Links', function() {
 
   afterEach(function(done){
     Link.collection.drop();
+    Tag.collection.drop();
     done();
   });
 
@@ -39,6 +42,7 @@ describe('Links', function() {
       .url('/links/new')
       .setValue('#name', 'Blog')
       .setValue('#url', 'http://www.michaellennox.me/blog/')
+      .setValue('#tags', 'blogga')
       .submitForm('#new-link-form')
       .getUrl(function(err, url) {
         expect(url).to.include('/links');
@@ -46,6 +50,7 @@ describe('Links', function() {
       .getText('body', function(err, text) {
         expect(text).to.include('name: Blog');
         expect(text).to.include('url: http://www.michaellennox.me/blog/');
+        expect(text).to.include('tags: #blogga');
       })
       .call(done);
   });
