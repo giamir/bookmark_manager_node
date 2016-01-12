@@ -28,7 +28,24 @@ describe('Links', function() {
     browser
       .url('/links')
       .getText('body', function(err, text) {
-        expect(text).to.include('http://www.michaellennox.me/');
+        expect(text).to.include('name: Home');
+        expect(text).to.include('url: http://www.michaellennox.me/');
+      })
+      .call(done);
+  });
+
+  it('should be able to create a new link via /links/new', function(done) {
+    browser
+      .url('/links/new')
+      .setValue('#name', 'Blog')
+      .setValue('#url', 'http://www.michaellennox.me/blog/')
+      .submitForm('#new-link-form')
+      .getUrl(function(err, url) {
+        expect(url).to.include('/links');
+      })
+      .getText('body', function(err, text) {
+        expect(text).to.include('name: Blog');
+        expect(text).to.include('url: http://www.michaellennox.me/blog/');
       })
       .call(done);
   });

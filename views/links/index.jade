@@ -1,7 +1,9 @@
 extends ../layout
 
 block content
-  h1= title
-  ul
+  h1 Links
+  ul#links
   - for link in links
-    li= link.url
+    li
+      p name: #{link.name}, 
+      p url: #{link.url}

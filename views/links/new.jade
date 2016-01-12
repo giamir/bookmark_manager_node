@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  h1 New Link
+  form(action="/links", method="POST", id="new-link-form")
+    label(for="name") Name:
+    input(type="text", name="name", id="name")
+
+    label(form="url") Url:
+    input(type="url", name="url", id="url")
+    
+    input(type="submit", value="Create Link!")

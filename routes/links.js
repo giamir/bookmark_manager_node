@@ -4,9 +4,19 @@ var Link = require('../models/link');
 
 router.get('/', function(req, res) {
   Link.find(function(err, links) {
-    console.log(err);
-    res.render('links/index', { title: 'Links', links: links });
+    res.render('links/index', { links: links });
   });
 });
+
+router.post('/', function(req, res) {
+  var newLink = new Link({name: req.body.name, url: req.body.url});
+  newLink.save(function(err, link) {});
+  res.redirect('');
+});
+
+router.get('/new', function(req, res) {
+  res.render('links/new');
+});
+
 
 module.exports = router;
