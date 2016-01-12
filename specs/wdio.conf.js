@@ -1,3 +1,5 @@
+var mongoose = require("mongoose");
+
 exports.config = {
 
     //
@@ -110,7 +112,13 @@ exports.config = {
     // Gets executed before test execution begins. At this point you will have access to all global
     // variables like `browser`. It is the perfect place to define custom commands.
     before: function() {
-        // do something
+      mongoose.connect('mongodb://localhost/bookmark-manager-test', function(err, res) {
+        if(err) {
+          console.log('Error connecting to the database. ' + err);
+        } else {
+          console.log('Connected to Database: ' + 'mongodb://localhost/bookmark-manager-test');
+        }
+      });
     },
     //
     // Gets executed after all tests are done. You still have access to all global variables from
