@@ -12,10 +12,9 @@ describe('Links', function() {
   Tag.collection.drop();
 
   beforeEach(function(done){
-    var newLink = new Link({
-      name: 'Home',
-      url: 'http://www.michaellennox.me/'
-    });
+    var newTag = new Tag({name: 'tag'});
+    var newLink = new Link({name: 'Home', url: 'http://www.michaellennox.me/', tags: newTag.id});
+    newTag.save();
     newLink.save(function(err) {
       done();
     });
