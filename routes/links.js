@@ -16,6 +16,7 @@ router.post('/', function(req, res) {
   tags.forEach(function(tag) {
     var newTag = new Tag({name: '#' + tag});
     newLink.tags.push(newTag.id);
+    newTag.links.push(newLink.id);
     newTag.save();
   });
   newLink.save();
