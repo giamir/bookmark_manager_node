@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Bookmark Manager' });
+  res.render('index', { title: 'Bookmark Manager', user: req.user });
 });
 
 module.exports = router;

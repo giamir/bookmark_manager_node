@@ -6,7 +6,7 @@ var Tag = require('../models/tag');
 
 router.get('/', function(req, res) {
   Link.find().populate('tags').exec(function(err, links) {
-    res.render('links/index', { links: links });
+    res.render('links/index', { links: links, user: req.user });
   });
 });
 
@@ -24,7 +24,7 @@ router.post('/', function(req, res) {
 });
 
 router.get('/new', function(req, res) {
-  res.render('links/new');
+  res.render('links/new', { user: req.user });
 });
 
 module.exports = router;

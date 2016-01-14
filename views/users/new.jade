@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  h1 Sign Up
+  form(action="/users", method="POST", id="new-user-form")
+    label(for="username") Email:
+    input(type="text", name="username", id="username")
+
+    label(form="password") Password:
+    input(type="password", name="password", id="password")
+    
+    input(type="submit", value="Sign Up!")
