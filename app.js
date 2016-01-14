@@ -3,7 +3,6 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var links = require('./routes/links');
@@ -24,14 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/links', links);
-
-mongoose.connect('mongodb://localhost/bookmark-manager-test', function(err, res) {
-  if(err) {
-    console.log('Error connecting to the database. ' + err);
-  } else {
-    console.log('Connected to Database: ' + 'mongodb://localhost/bookmark-manager-test');
-  }
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
