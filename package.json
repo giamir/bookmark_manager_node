@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node ./bin/www",
-    "startTest": "node ./bin/test",
+    "testServer": "nodemon ./bin/test",
+    "devServer": "nodemon ./bin/dev",
     "test": "grunt"
   },
   "dependencies": {

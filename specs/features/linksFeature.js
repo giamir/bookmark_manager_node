@@ -13,7 +13,8 @@ describe('Links', function() {
 
   beforeEach(function(done){
     var newTag = new Tag({name: 'tag'});
-    var newLink = new Link({name: 'Home', url: 'http://www.michaellennox.me/', tags: newTag.id});
+    var newLink = new Link({name: 'Home', url: 'http://www.michaellennox.me/'});
+    newLink.tags.push(newTag.id);
     newTag.save();
     newLink.save(function(err) {
       done();
@@ -41,7 +42,7 @@ describe('Links', function() {
       .url('/links/new')
       .setValue('#name', 'Blog')
       .setValue('#url', 'http://www.michaellennox.me/blog/')
-      .setValue('#tags', 'blogga')
+      .setValue('#tags', 'blog me myblog')
       .submitForm('#new-link-form')
       .getUrl(function(err, url) {
         expect(url).to.include('/links');
@@ -49,7 +50,7 @@ describe('Links', function() {
       .getText('body', function(err, text) {
         expect(text).to.include('name: Blog');
         expect(text).to.include('url: http://www.michaellennox.me/blog/');
-        expect(text).to.include('tags: #blogga');
+        expect(text).to.include('tags: #blog #me #myblog');
       })
       .call(done);
   });

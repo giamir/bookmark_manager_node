@@ -3,8 +3,11 @@ extends ../layout
 block content
   h1 Links
   ul#links
-  - for link in links
+  - each link in links
+    - var tagList = ""
+    - each tag in link.tags
+      - tagList += ' ' + tag.name
     li
       p name: #{link.name}, 
       p url: #{link.url},
-      p tags: ##{link.tags.name}
+      p tags: #{tagList}

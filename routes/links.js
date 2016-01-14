@@ -11,10 +11,14 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  var newTag = new Tag({name: req.body.tags});
-  var newLink = new Link({name: req.body.name, url: req.body.url, tags: newTag.id});
+  var tags = req.body.tags.split(' ');
+  var newLink = new Link({name: req.body.name, url: req.body.url});
+  tags.forEach(function(tag) {
+    var newTag = new Tag({name: '#' + tag});
+    newLink.tags.push(newTag.id);
+    newTag.save();
+  });
   newLink.save();
-  newTag.save();
   res.redirect('/links');
 });
 
