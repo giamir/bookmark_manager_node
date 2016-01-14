@@ -12,6 +12,7 @@ var routes = require('./routes/index');
 var links = require('./routes/links');
 var tags = require('./routes/tags');
 var users = require('./routes/users');
+var sessions = require('./routes/sessions');
 
 var app = express();
 
@@ -38,6 +39,7 @@ app.use('/', routes);
 app.use('/links', links);
 app.use('/tags', tags);
 app.use('/users', users);
+app.use('/sessions', sessions);
 
 // passport config
 var Account = require('./models/account');

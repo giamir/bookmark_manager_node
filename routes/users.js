@@ -5,7 +5,6 @@ var passport = require('passport');
 var Account = require('../models/account');
 
 router.post('/', function(req, res) {
-  console.log(req.body);
   Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
     if (err) {
       return res.redirect('/users/new');
