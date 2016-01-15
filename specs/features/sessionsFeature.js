@@ -14,7 +14,6 @@ describe('Sessions', function() {
       if (err) {
         return err
       }
-
       done();
     });
   });
@@ -35,6 +34,32 @@ describe('Sessions', function() {
       })
       .getText('body', function(err, text) {
         expect(text).to.include('Welcome, michael@example.com');
+      })
+      .call(done);
+  });
+
+  it('a user should be able to see the sign out button', function(done) {
+    browser
+      .url('/sessions/new')
+      .setValue('#username', 'michael@example.com')
+      .setValue('#password', 'Green')
+      .submitForm('#new-session-form')
+      .getText('body', function(err, text) {
+        expect(text).to.include('Log out');
+      })
+      .call(done);
+  });
+
+  it('a user should be able to sign out to the service', function(done) {
+    browser
+      .url('/sessions/new')
+      .setValue('#username', 'michael@example.com')
+      .setValue('#password', 'Green')
+      .submitForm('#new-session-form')
+      .submitForm('#logout-form')
+      .url('/')
+      .getText('body', function(err, text) {
+        expect(text).not.to.include('Welcome, michael@example.com');
       })
       .call(done);
   });

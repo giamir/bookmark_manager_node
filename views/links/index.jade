@@ -8,6 +8,7 @@ block content
     - each tag in link.tags
       - tagList += ' ' + tag.name
     li
-      p name: #{link.name}, 
+      p name: #{link.name},
       p url: #{link.url},
       p tags: #{tagList}
+  a(href="/links/new") Add a new link

@@ -12,4 +12,9 @@ router.get('/new', function(req, res) {
   res.render('sessions/new', {});
 });
 
+router.delete('/a', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
 module.exports = router;

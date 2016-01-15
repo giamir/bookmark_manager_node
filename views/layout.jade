@@ -6,5 +6,11 @@ html
   body
     if user
       h1 Welcome, #{user.username}
-      
+      form(action="/sessions", method="POST", id="logout-form")
+        input(name="_method", type="hidden", value="DELETE", enctype="application/x-www-form-urlencoded")
+        button(type="submit") Log out
+    else
+      a(href='/users/new') Sign up
+      a(href='/sessions/new') Sign in
+
     block content
